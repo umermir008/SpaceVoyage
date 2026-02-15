@@ -2,8 +2,6 @@
 
 A premium, responsive single-page website for a futuristic space tourism company, featuring 3D animations, GSAP scroll effects, and a cosmic design theme.
 
-![Space Travel Website Preview](https://images.unsplash.com/photo-1580428180121-22d88b1e6e03?w=800&h=400&fit=crop)
-
 ## ✨ Features
 
 ### 🎨 Visual Design
@@ -327,5 +325,6 @@ Your futuristic space travel website is ready to take visitors on an incredible 
 **Launch Command**: Simply open `index.html` in your browser and prepare for liftoff! 🚀
 
 ---
+
 
 *Made with ❤️ for the future of space exploration*
