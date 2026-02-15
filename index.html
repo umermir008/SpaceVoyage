@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Futuristic Space Travel | Book Your Journey to the Stars</title>
+    <meta name="description" content="Experience the future of space tourism with our premium interplanetary travel packages. Book your journey to Moon, Mars, and beyond.">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" as="script">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" as="script">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'cosmic-blue': '#0B1426',
+                        'cosmic-purple': '#1E0A3C',
+                        'neon-cyan': '#00FFFF',
+                        'neon-purple': '#8B5FBF',
+                        'neon-pink': '#FF006E',
+                        'space-gray': '#1A1A2E'
+                    },
+                    fontFamily: {
+                        'space': ['Orbitron', 'monospace'],
+                        'body': ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'glow': 'glow 2s ease-in-out infinite alternate',
+                        'rotate-slow': 'rotate 20s linear infinite',
+                        'pulse-slow': 'pulse 3s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-cosmic-blue text-white overflow-x-hidden">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 bg-cosmic-blue/80 backdrop-blur-md border-b border-neon-cyan/20">
+        <div class="container mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="font-space text-2xl font-bold text-neon-cyan">
+                    <i class="fas fa-rocket mr-2"></i>SpaceVoyage
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#hero" class="nav-link hover:text-neon-cyan transition-colors duration-300">Home</a>
+                    <a href="#about" class="nav-link hover:text-neon-cyan transition-colors duration-300">About</a>
+                    <a href="#destinations" class="nav-link hover:text-neon-cyan transition-colors duration-300">Destinations</a>
+                    <a href="#gallery" class="nav-link hover:text-neon-cyan transition-colors duration-300">Gallery</a>
+                    <a href="#contact" class="nav-link hover:text-neon-cyan transition-colors duration-300">Contact</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden text-2xl focus:outline-none" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="md:hidden mt-4 pb-4 hidden" id="mobile-menu">
+                <div class="flex flex-col space-y-4">
+                    <a href="#hero" class="nav-link hover:text-neon-cyan transition-colors duration-300">Home</a>
+                    <a href="#about" class="nav-link hover:text-neon-cyan transition-colors duration-300">About</a>
+                    <a href="#destinations" class="nav-link hover:text-neon-cyan transition-colors duration-300">Destinations</a>
+                    <a href="#gallery" class="nav-link hover:text-neon-cyan transition-colors duration-300">Gallery</a>
+                    <a href="#contact" class="nav-link hover:text-neon-cyan transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <!-- Three.js Canvas Container -->
+        <div id="three-container" class="absolute inset-0 z-0"></div>
+        
+        <!-- Hero Content -->
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <h1 class="font-space text-4xl md:text-6xl lg:text-7xl font-bold mb-6 hero-title">
+                Journey Beyond
+                <span class="block text-neon-cyan animate-glow">The Stars</span>
+            </h1>
+            <p class="text-lg md:text-xl lg:text-2xl mb-8 text-gray-300 hero-subtitle max-w-2xl mx-auto">
+                Experience the ultimate frontier with our premium space travel packages. 
+                Book your seat to the cosmos and make history.
+            </p>
+            <button class="cta-button bg-gradient-to-r from-neon-pink to-neon-purple px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-2xl hover:shadow-neon-pink/50">
+                <i class="fas fa-rocket mr-2"></i>Book Your Space Journey
+            </button>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-10">
+            <div class="animate-bounce">
+                <i class="fas fa-chevron-down text-2xl text-neon-cyan"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-gradient-to-b from-cosmic-blue to-cosmic-purple">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="about-image">
+                    <img src="https://images.unsplash.com/photo-1517976487492-5750f3195933?w=800&h=600&fit=crop&auto=format" 
+                         alt="Futuristic Rocket" 
+                         class="rounded-2xl shadow-2xl hover:scale-105 transform transition-transform duration-500 lazy-image"
+                         loading="lazy"
+                         onerror="this.src='https://images.unsplash.com/photo-1581091226825-c6a89e7e4801?w=800&h=600&fit=crop&auto=format'">
+                </div>
+                <div class="about-content">
+                    <h2 class="font-space text-3xl md:text-4xl font-bold mb-6 text-neon-cyan">
+                        The Future of Space Tourism
+                    </h2>
+                    <p class="text-lg mb-6 text-gray-300">
+                        Welcome to a new era of exploration. Our cutting-edge spacecraft and experienced crew 
+                        make interplanetary travel safer and more accessible than ever before.
+                    </p>
+                    <p class="text-lg mb-8 text-gray-300">
+                        From the serene lunar landscapes to the red horizons of Mars, we offer meticulously 
+                        planned journeys that combine luxury, safety, and the thrill of discovery.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-neon-cyan">500+</div>
+                            <div class="text-sm text-gray-400">Successful Flights</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-neon-cyan">99.9%</div>
+                            <div class="text-sm text-gray-400">Safety Record</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="text-2xl font-bold text-neon-cyan">24/7</div>
+                            <div class="text-sm text-gray-400">Support</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destinations Section -->
+    <section id="destinations" class="py-20 bg-space-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-space text-3xl md:text-4xl font-bold mb-4 text-neon-cyan">
+                    Choose Your Destination
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    Explore the most exciting destinations in our solar system with our premium travel packages.
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Moon Card -->
+                <div class="destination-card bg-cosmic-purple/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transform transition-all duration-500 hover:shadow-2xl hover:shadow-neon-cyan/20 border border-neon-cyan/20">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🌙</div>
+                        <h3 class="font-space text-2xl font-bold text-neon-cyan mb-2">Luna Experience</h3>
+                        <p class="text-gray-300 mb-4">3-day lunar adventure with Earth views</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm">
+                        <li class="flex items-center"><i class="fas fa-check text-neon-cyan mr-2"></i>Lunar surface exploration</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-cyan mr-2"></i>Zero gravity experience</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-cyan mr-2"></i>Luxury lunar base stay</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-neon-pink mb-4">$250,000</div>
+                        <button class="w-full bg-gradient-to-r from-neon-cyan to-neon-purple px-6 py-3 rounded-full hover:scale-105 transform transition-all duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mars Card -->
+                <div class="destination-card bg-cosmic-purple/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transform transition-all duration-500 hover:shadow-2xl hover:shadow-neon-pink/20 border border-neon-pink/20">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🔴</div>
+                        <h3 class="font-space text-2xl font-bold text-neon-pink mb-2">Mars Explorer</h3>
+                        <p class="text-gray-300 mb-4">14-day Martian expedition</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm">
+                        <li class="flex items-center"><i class="fas fa-check text-neon-pink mr-2"></i>Martian landscape tours</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-pink mr-2"></i>Underground cave systems</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-pink mr-2"></i>Olympus Mons visit</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-neon-cyan mb-4">$2,500,000</div>
+                        <button class="w-full bg-gradient-to-r from-neon-pink to-neon-purple px-6 py-3 rounded-full hover:scale-105 transform transition-all duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Jupiter Card -->
+                <div class="destination-card bg-cosmic-purple/50 backdrop-blur-md rounded-2xl p-8 hover:scale-105 transform transition-all duration-500 hover:shadow-2xl hover:shadow-neon-purple/20 border border-neon-purple/20">
+                    <div class="text-center mb-6">
+                        <div class="text-6xl mb-4">🪐</div>
+                        <h3 class="font-space text-2xl font-bold text-neon-purple mb-2">Jupiter Orbit</h3>
+                        <p class="text-gray-300 mb-4">21-day gas giant orbital tour</p>
+                    </div>
+                    <ul class="space-y-2 mb-6 text-sm">
+                        <li class="flex items-center"><i class="fas fa-check text-neon-purple mr-2"></i>Europa ice moon landing</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-purple mr-2"></i>Great Red Spot flyby</li>
+                        <li class="flex items-center"><i class="fas fa-check text-neon-purple mr-2"></i>Jupiter's rings exploration</li>
+                    </ul>
+                    <div class="text-center">
+                        <div class="text-3xl font-bold text-neon-cyan mb-4">$8,500,000</div>
+                        <button class="w-full bg-gradient-to-r from-neon-purple to-neon-cyan px-6 py-3 rounded-full hover:scale-105 transform transition-all duration-300">
+                            Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-gradient-to-b from-space-gray to-cosmic-blue">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-space text-3xl md:text-4xl font-bold mb-4 text-neon-cyan">
+                    Experience Gallery
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    Witness the breathtaking beauty of space through our travelers' experiences.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="gallery-grid">
+                <!-- Gallery images will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 bg-cosmic-purple">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-space text-3xl md:text-4xl font-bold mb-4 text-neon-cyan">
+                    See Space Like Never Before
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    Experience the wonder and majesty of space travel through our exclusive footage.
+                </p>
+            </div>
+            
+            <div class="max-w-4xl mx-auto">
+                <div class="relative pb-9/16 h-0 overflow-hidden rounded-2xl shadow-2xl hover:shadow-neon-cyan/20 transition-shadow duration-500">
+                    <iframe 
+                        class="absolute top-0 left-0 w-full h-full rounded-2xl"
+                        style="aspect-ratio: 16/9; height: 400px;"
+                        src="https://www.youtube.com/embed/1w8Z0UOXVaY" 
+                        title="Space Travel Experience" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen
+                        loading="lazy">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-space-gray">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="font-space text-3xl md:text-4xl font-bold mb-4 text-neon-cyan">
+                    Ready for Launch?
+                </h2>
+                <p class="text-lg text-gray-300 max-w-2xl mx-auto">
+                    Contact our space travel specialists to plan your perfect cosmic adventure.
+                </p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <form id="contact-form" class="space-y-6 bg-cosmic-purple/50 backdrop-blur-md rounded-2xl p-8 border border-neon-cyan/20">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-neon-cyan">Full Name</label>
+                            <input type="text" id="name" name="name" required 
+                                   class="w-full px-4 py-3 bg-cosmic-blue border border-neon-cyan/30 rounded-lg focus:border-neon-cyan focus:outline-none transition-colors duration-300 text-white">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-2 text-neon-cyan">Email Address</label>
+                            <input type="email" id="email" name="email" required 
+                                   class="w-full px-4 py-3 bg-cosmic-blue border border-neon-cyan/30 rounded-lg focus:border-neon-cyan focus:outline-none transition-colors duration-300 text-white">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium mb-2 text-neon-cyan">Message</label>
+                        <textarea id="message" name="message" rows="6" required 
+                                  class="w-full px-4 py-3 bg-cosmic-blue border border-neon-cyan/30 rounded-lg focus:border-neon-cyan focus:outline-none transition-colors duration-300 text-white resize-none"
+                                  placeholder="Tell us about your dream space adventure..."></textarea>
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-gradient-to-r from-neon-cyan to-neon-purple px-8 py-4 rounded-full text-lg font-semibold hover:scale-105 transform transition-all duration-300 shadow-2xl hover:shadow-neon-cyan/50">
+                        <i class="fas fa-paper-plane mr-2"></i>Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cosmic-blue border-t border-neon-cyan/20 py-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8">
+                <div>
+                    <div class="font-space text-2xl font-bold text-neon-cyan mb-4">
+                        <i class="fas fa-rocket mr-2"></i>SpaceVoyage
+                    </div>
+                    <p class="text-gray-400 mb-4">
+                        Leading the future of space tourism with safe, luxury, and unforgettable experiences.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-neon-cyan hover:text-neon-pink transition-colors duration-300">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-neon-cyan hover:text-neon-pink transition-colors duration-300">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-neon-cyan hover:text-neon-pink transition-colors duration-300">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-neon-cyan hover:text-neon-pink transition-colors duration-300">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-neon-cyan mb-4">Destinations</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Luna Experience</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Mars Explorer</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Jupiter Orbit</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Custom Missions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-neon-cyan mb-4">Company</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">About Us</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Safety Standards</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Careers</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Press</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold text-neon-cyan mb-4">Support</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Contact</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">FAQ</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Training</a></li>
+                        <li><a href="#" class="hover:text-neon-cyan transition-colors duration-300">Insurance</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-neon-cyan/20 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 SpaceVoyage. All rights reserved. | Privacy Policy | Terms of Service</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <!-- Three.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" defer></script>
+    
+    <!-- Custom Scripts -->
+    <script src="js/three-scene.js" defer></script>
+    <script src="js/main.js" defer></script>
+</body>
+</html>
